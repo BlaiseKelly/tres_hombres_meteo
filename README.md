@@ -17,10 +17,10 @@ The route looked like this:
 
 ![](README_files/figure-commonmark/schools-1.png)
 
-This repository includes the gpx file recorded on my watch every 15
-minutes (whilst on deck). The coordinates are imported from this in
-script 01_download_data.R and used to download data for 8 parameters I
-thought would be interesting:
+This repository includes the gpx file in the data folder recorded on my
+watch every 15 minutes (whilst on deck). The coordinates are imported
+from this in script 01_download_data.R and used to download data for 8
+parameters I thought would be interesting:
 
 - 10m_u_component_of_wind  
 - 10m_v_component_of_wind  
