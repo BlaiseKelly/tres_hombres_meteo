@@ -15,6 +15,8 @@ and safety of voyages.
 
 The route looked like this:
 
+![](README_files/figure-commonmark/schools-1.png)
+
 This repository includes the gpx file recorded on my watch every 15
 minutes (whilst on deck). The coordinates are imported from this in
 script 01_download_data.R and used to download data for 8 parameters I

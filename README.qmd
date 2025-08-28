@@ -10,9 +10,10 @@ editor: source
 
 ```{r setup, include=FALSE}
 
-library(leaflet)
+library(tmap)
 library(sf)
 library(dplyr)
+library(basemaps)
 
 # import gps track of journey
 track_sf <- st_read("data/activity_19676867656.gpx", layer = "track_points") |> 
@@ -30,15 +31,14 @@ The route looked like this:
 
 ```{r schools, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, comment=FALSE, cache=FALSE, results=FALSE, error=FALSE}
 
+track_buffer <- st_transform(st_buffer(st_transform(track_sf,28992), 10000),4326)
 
-m <- leaflet() %>% 
-  addProviderTiles("CartoDB.Positron", group = "CartoDB")
+bg <- basemap_raster(ext=track_buffer, map_service = "carto", map_type = "light")
 
-m <- m %>% addCircleMarkers(data = track_sf, color = "black", radius = 4, weight = 0.2,
-                            opacity = 1.0, fillOpacity = 0.6, fillColor = "orange",
-                            popup = paste("date:", track_sf$time, "<br>"))
-
-m
+tm_shape(bg)+
+  tm_rgb()+
+  tm_shape(track_sf)+
+  tm_dots(col = 'orange', size = 0.7,title = "Tres Hombres", legend.show = TRUE)
 
 ```
 This repository includes the gpx file recorded on my watch every 15 minutes (whilst on deck). The coordinates are imported from this in script 01_download_data.R and used to download data for 8 parameters I thought would be interesting:
